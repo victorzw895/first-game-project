@@ -1,6 +1,29 @@
 console.log("Up and running!");
 
-var cards = ["queen", "queen", "king", "king"],
+var cards = [
+{
+	rank: "queen",
+	suit: "hearts",
+	cardImage: "images/queen-of-hearts.png"
+},
+{
+	rank: "queen",
+	suit: "diamods",
+	cardImage: "images/queen-of-diamonds.png"
+},
+{
+	rank: "king",
+	suit: "hearts",
+	cardImage: "images/king-of-hearts.png"
+},
+{
+	rank: "king",
+	suit: "diamonds",
+	cardImage: "images/king-of-diamods.png"
+}
+];
+
+//"queen", "queen", "king", "king"],
 	cardsInPlay = [];
 
 
@@ -31,8 +54,10 @@ function checkForMatch(){
 // if user flipped two cards
 // check for a match
 function flipCard(cardId) {
-	console.log("User flipped " + cards[cardId]);
-	cardsInPlay.push(cards[cardId]);
+	console.log("User flipped " + cards[cardId].rank + " of " + cards[cardId].suit);
+	cardsInPlay.push(cards[cardId].rank);
+	console.log(cards[cardId].cardImage);
+	console.log(cards[cardId].suit);
 	checkForMatch();
 }
 
@@ -41,6 +66,7 @@ flipCard(0);
 flipCard(2);
 
 console.log(cardsInPlay);
+console.log(cards);
 
 //CHECK FOR A MATCH PSEUDO CODE
 // after card is selected

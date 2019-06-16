@@ -73,6 +73,10 @@ a {
 	border-bottom: 2px solid transparent;
 }
 
+.score {
+	background-color: yellow;
+}
+
 .bottomnav {
 	margin: 23px auto;
 	float: left;

@@ -25,6 +25,23 @@ main {
 	margin: 35px auto;
 }
 
+#message-board {
+	font-family: "Raleway", sans-serif;
+	font-weight: 600;
+	background-color: rgba(247, 226, 110, 0.7);
+	padding: 10px 0 12px;
+	width: 250px;
+	line-height: 23px;
+	margin: 30px auto 0;
+	border-radius: 10px;
+}
+
+button {
+	padding: 5px 10px;
+	margin: 10px auto 5px;
+	border-radius: 10px;
+}
+
 img {
 	margin: 40px 17px 0;
 }

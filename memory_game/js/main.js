@@ -24,13 +24,31 @@ var cards = [
 ];
 
 //"queen", "queen", "king", "king"],
+
+// Cards
 var cardsInPlay = [];
 
-var counter = 0;
+// Initial Scoring
+var counter = 100;
+var score = '';
+// Final Score setup
+var currentScore = "Current Score: " + counter + " points";
 
+// Game Over Status
 var gameOverStatus = false;
 
-shuffleCards();
+// declaring messageBoard
+var messageBoard = document.getElementById("message-board");
+
+function gameStart() {
+	//maybe add gameOverStatus
+	//initial gameStatus
+	messageBoard.innerText = "Game Start!\n" + currentScore;
+	shuffleCards();
+
+}
+
+gameStart();
 
 function createBoard() {
 	for (let i = 0; i < cards.length; i++) {
@@ -54,18 +72,39 @@ function checkForMatch(){
 	if (cardsInPlay.length === 2) {
 		if (cardsInPlay[0] === cardsInPlay[1]) {
 			console.log("You found a match!"); // display match found message
+			messageBoard.innerText = "You found a match!\n" + "Current Score: " + counter + " points";
 			// move cards to matched cards array
 		}
 		else {
 			console.log("Sorry, try again.");	// display match not found
-			// move cards back to cards[] array
 			resetBoard();
+			console.log(counter);
+			console.log(currentScore);
+			messageBoard.innerText = "Wrong card, try again.\n" + "Current Score: " + counter + " points";
+			// move cards back to cards[] array
 		}
 	}
 	// Once all cards have been flipped, trigger Game Over
 	else if (cardsInPlay.length === 4) {
 	// test alert
 	// alert("game over!");
+		if (counter === 100) {
+			score = "Perfect!";
+		}
+		else if (counter >= 85) {
+			score = "Great!";
+		}
+		else if (counter >= 70) {
+			score = "Not Bad";
+		}
+		else if (counter >= 50) {
+			score = "Just Passed";
+		}
+		else {
+			score = "Fail..";
+		}
+		// alert("Final Score \n" + score + "\n" + counter + " points");
+		messageBoard.innerText = "Game Over\n" + score + "\nYour Final Score: " + counter + " points";
 	playAgain();
 	return; 
 	}
@@ -76,7 +115,7 @@ function playAgain() {
 	// if game over, create Reset button
 	var resetButton = document.createElement('button');
 	resetButton.innerHTML = "Play Again?";
-	document.getElementById("game-board").appendChild(resetButton);
+	document.getElementById("message-board").appendChild(resetButton);
 	resetButton.addEventListener("click", resetBoard);
 
 	gameOverStatus = true;
@@ -92,8 +131,10 @@ function resetBoard() {
 	}
 	else {
 		console.log(counter);
-		counter = 0;
+		counter = 100;
 		gameOverStatus = false;
+		window.location.hash = "#game-board";
+		gameStart();
 	}
 	//reset cards in play
 	cardsInPlay = [];
@@ -109,7 +150,6 @@ function resetBoard() {
 
 
 	// location reset at game section
-	//window.location.hash = "#!game-board";
 	// test alert
 	// alert("game is being reset!");
 }
@@ -147,12 +187,11 @@ console.log(cardsInPlay);
 console.log(cards);
 
 function countAttempts() {
-	counter++;
-	console.log(counter)
+	counter = counter - 15;
+	console.log(counter);
 }
 
 createBoard();
-
 
 //TRACK DISPLAY USER SCORE
 
